@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Player : MonoBehaviour
     private float JumpForce = 25.0f;
     private int JumpCount;
     private bool IsJumped;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
+    public GameObject Sprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Killable")
         {
-            Destroy(gameObject, 0f);
+            Destroy(Sprite, 0f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        IsJumped = true;
+        IsJumped = true; //If Player touches any collision
        JumpCount = 0;
     }
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class Player : MonoBehaviour
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
-        if ((Input.GetKeyDown("w") || Input.GetKeyDown("space")) && JumpCount < 2 && IsJumped)
+        if ((Input.GetKeyDown("w") || Input.GetKeyDown("space")) && JumpCount < 2 && IsJumped) //For Double Jump
         {
             rb.velocity = new Vector3(0, JumpForce, 0);
             JumpCount++;

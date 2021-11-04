@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Solid
   - Killable
+  - Trigger
+  - Safe
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - Killable
   - Water
   - UI
-  - 
-  - 
+  - DialogText
+  - Panel
   - 
   - 
   - 
@@ -42,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Killable
+    uniqueID: 1563144731
+    locked: 0
+  - name: DialogText
+    uniqueID: 1787485737
+    locked: 0
+  - name: Panel
+    uniqueID: 4166048385
     locked: 0

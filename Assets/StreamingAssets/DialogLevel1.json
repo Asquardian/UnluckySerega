@@ -1,17 +1,33 @@
 {
   "Items": [
     {
-      "Name": "1me",
-      "DialogText": "1Powai"
+      "Name": "Его имя",
+      "DialogText": "Пора в путь!"
     },
     {
-      "Name": "3me",
-      "DialogText": "3Powai"
+      "Name": "Его имя",
+      "DialogText": "Может просто подвинуть"
     },
 
     {
-      "Name": "2me",
-      "DialogText": "1Powai"
+      "Name": "Его имя",
+      "DialogText": "Не рассчитал"
+    },
+    {
+      "Name": "Его имя",
+      "DialogText": "За что"
+    },
+    {
+      "Name": "Его имя",
+      "DialogText": "Больно"
+    },
+    {
+      "Name": "Его",
+      "DialogText": "Почему тебе так везет"
+    },
+    {
+      "Name": "Его",
+      "DialogText": "Красивое место, но как же я хочу отсюда уйти"
     }
   ]
 }

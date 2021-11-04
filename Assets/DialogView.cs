@@ -34,7 +34,7 @@ public static class JsonHelper
     }
 }
 
-[System.Serializable]
+[System.Serializable] //DO NOT TOUCH
 public class Dialog
 {
     public string Name;
@@ -47,12 +47,12 @@ public class DialogView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        path = Application.streamingAssetsPath + "/DialogLevel1.json";
+        path = Application.streamingAssetsPath + "/DialogLevel1.json";//Path to StramingAssets in folder
         Dialog[] json = JsonHelper.FromJson<Dialog>(File.ReadAllText(path));
-        NameOption.text = json[0].Name;
-        DialogOption.text = json[0].DialogText;
+        int value = Random.Range(0, 7);
+        NameOption.text = json[value].Name;
+        DialogOption.text = json[value].DialogText;
     }
-
     // Update is called once per frame
     void Update()
     {
