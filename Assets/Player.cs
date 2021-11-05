@@ -21,8 +21,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Killable")
         {
-            Destroy(Sprite, 0f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            death();
         }
         IsJumped = true; //If Player touches any collision
        JumpCount = 0;
@@ -30,15 +29,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
-        if ((Input.GetKeyDown("w") || Input.GetKeyDown("space")) && JumpCount < 2 && IsJumped) //For Double Jump
+        if ((Input.GetKeyDown("w") || Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.UpArrow)) && JumpCount < 2 && IsJumped) //For Double Jump
         {
             rb.velocity = new Vector3(0, JumpForce, 0);
             JumpCount++;
@@ -47,5 +46,11 @@ public class Player : MonoBehaviour
         {
             IsJumped = false;
         }
+    }
+
+    public void death()
+    {
+        Destroy(Sprite, 0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Destroing : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    private bool isDestroyeble = false;
+
     void Start()
     {
         
@@ -14,6 +17,7 @@ public class Destroing : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
+           
         }
         if (collision.gameObject.tag == "Safe") 
         {
