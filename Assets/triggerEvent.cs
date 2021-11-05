@@ -13,6 +13,7 @@ public class triggerEvent : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            Car.transform.tag = "Killable";
             Car.velocity = new Vector3(0, -20, 0);
         }
         if(collision.gameObject.tag == "Killable")

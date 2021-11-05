@@ -44,10 +44,11 @@ public class DialogView : MonoBehaviour
 {
     private string path;
     public Text DialogOption, NameOption;
+    public string FilePath;
     // Start is called before the first frame update
     void Start()
     {
-        path = Application.streamingAssetsPath + "/DialogLevel1.json";//Path to StramingAssets in folder
+        path = Application.streamingAssetsPath + "/" + FilePath;//Path to StramingAssets in folder
         Dialog[] json = JsonHelper.FromJson<Dialog>(File.ReadAllText(path));
         int value = Random.Range(0, 7);
         NameOption.text = json[value].Name;
