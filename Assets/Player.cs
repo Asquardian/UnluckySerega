@@ -25,7 +25,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "Finish")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            int indx = SceneManager.GetActiveScene().buildIndex;
+            indx++;
+            SceneManager.LoadScene(indx);
         }
         IsJumped = true; //If Player touches any collision
        JumpCount = 0;
