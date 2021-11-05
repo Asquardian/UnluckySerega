@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed = 10.0f;
     [SerializeField]
-    private float JumpForce = 25.0f;
+    private float JumpForce = 15.0f;
     private int JumpCount;
     private bool IsJumped;
     private Rigidbody2D rb;
@@ -29,6 +29,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Killable")
         {
             death();
+        }
+        if (collision.gameObject.tag == "Finish")
+        {
+            int indx = SceneManager.GetActiveScene().buildIndex;
+            indx++;
+            SceneManager.LoadScene(indx);
         }
         IsJumped = true; //If Player touches any collision
        JumpCount = 0;
@@ -52,12 +58,20 @@ public class Player : MonoBehaviour
        
             anim.SetFloat("Speed", Mathf.Abs(move));
         }
+        if (Input.GetKeyUp("d")) //Sergey Add Inertsia in this
+        {
+            rb.velocity += new Vector2(speed, 0);
+        }
+        if (Input.GetKeyUp("a"))
+        {
+            rb.velocity -= new Vector2(speed, 0);
+        }
         if ((Input.GetKeyDown("w") || Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.UpArrow)) && JumpCount < 2 && IsJumped) //For Double Jump
         {
             rb.velocity = new Vector3(0, JumpForce, 0);
             JumpCount++;
         }
-        if(JumpCount > 2)
+            if (JumpCount > 2)
         {
             IsJumped = false;
         }
