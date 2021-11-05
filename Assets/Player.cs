@@ -5,15 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
     private float speed = 10.0f;
+    [SerializeField]
     private float JumpForce = 15.0f;
     private int JumpCount;
     private bool IsJumped;
     private Rigidbody2D rb;
     public GameObject Sprite;
+    private Animator anim;
+    private int move;
+    private bool isFacingRight = true;
+    private bool isGrounded = false;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         JumpCount = 0;
     }
@@ -35,13 +42,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float move = Input.GetAxis("Horizontal");
+        anim.SetFloat("Speed", Mathf.Abs(move));
+
+        
         if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
+           
+            anim.SetFloat("Speed", Mathf.Abs(move));
         }
         if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
+       
+            anim.SetFloat("Speed", Mathf.Abs(move));
         }
         if (Input.GetKeyUp("d"))
         {
@@ -60,11 +75,40 @@ public class Player : MonoBehaviour
         {
             IsJumped = false;
         }
+
+        if (move > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if(move < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
+    
 
     public void death()
     {
         Destroy(Sprite, 0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        isGrounded = true;
+        anim.SetBool("isGrounded", isGrounded);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isGrounded = false;
+        anim.SetBool("isGrounded", isGrounded);
+    }
+
 }
