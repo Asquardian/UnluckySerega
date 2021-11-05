@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     private float speed = 10.0f;
-    private float JumpForce = 25.0f;
+    private float JumpForce = 15.0f;
     private int JumpCount;
     private bool IsJumped;
     private Rigidbody2D rb;
@@ -23,6 +23,10 @@ public class Player : MonoBehaviour
         {
             death();
         }
+        if (collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         IsJumped = true; //If Player touches any collision
        JumpCount = 0;
     }
@@ -37,12 +41,20 @@ public class Player : MonoBehaviour
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
+        if (Input.GetKeyUp("d"))
+        {
+            rb.velocity += new Vector2(speed, 0);
+        }
+        if (Input.GetKeyUp("a"))
+        {
+            rb.velocity -= new Vector2(speed, 0);
+        }
         if ((Input.GetKeyDown("w") || Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.UpArrow)) && JumpCount < 2 && IsJumped) //For Double Jump
         {
             rb.velocity = new Vector3(0, JumpForce, 0);
             JumpCount++;
         }
-        if(JumpCount > 2)
+            if (JumpCount > 2)
         {
             IsJumped = false;
         }
