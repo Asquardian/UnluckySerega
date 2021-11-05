@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
        
             anim.SetFloat("Speed", Mathf.Abs(move));
         }
-        if (Input.GetKeyUp("d"))
+        if (Input.GetKeyUp("d")) //Sergey Add Inertsia in this
         {
             rb.velocity += new Vector2(speed, 0);
         }
