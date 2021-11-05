@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private int move;
     private bool isFacingRight = true;
+    private bool isGrounded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour
     {
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
+
+        
         if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
@@ -83,4 +86,15 @@ public class Player : MonoBehaviour
         transform.localScale = theScale;
     
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        isGrounded = true;
+        anim.SetBool("isGrounded", isGrounded);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isGrounded = false;
+        anim.SetBool("isGrounded", isGrounded);
+    }
+
 }
