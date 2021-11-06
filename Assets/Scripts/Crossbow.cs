@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Crossbow : MonoBehaviour
 {
+    public Animation anim;
     [SerializeField]
     private GameObject _arrowPrefab;
     private float _fireRate = 2.0f;
     private float _canFire = -1;
     [SerializeField]
     private float _speed = 8.0f;
+ 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -24,10 +26,13 @@ public class Crossbow : MonoBehaviour
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
+
+            anim.Play("Crossbow");
             GameObject arrow = Instantiate(_arrowPrefab, transform.position, Quaternion.identity);
-           
+            
 
         }
+       
     }
 
    
