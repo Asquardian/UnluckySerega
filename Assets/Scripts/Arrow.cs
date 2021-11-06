@@ -5,7 +5,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 8.0f;
+    private float _speed = 12.0f;
 
     private void Update()
     {
@@ -20,6 +20,6 @@ public class Arrow : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 5);
     }
 }
