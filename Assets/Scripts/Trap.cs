@@ -15,7 +15,7 @@ public class Trap : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("collision done");
-            spike.transform.position = new Vector3(-3.664f, -5.14699984f, 0);
+            spike.transform.position = new Vector3(-0.1099997f, -3.88f, 0);
             Destroy(this.gameObject);
         }
     }
