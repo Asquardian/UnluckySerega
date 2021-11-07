@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -11,12 +10,7 @@ public class Boss : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1;
     private int _lives = 10;
-    public Text Lives;
     // Start is called before the first frame update
-    void Start()
-    {
-        Lives.text = "Дракон: " + _lives.ToString();
-    }
 
     // Update is called once per frame
     void Update()
@@ -49,8 +43,7 @@ public class Boss : MonoBehaviour
     public void damage()
     {
         _lives--;
-        Lives.text = "Дракон: " + _lives.ToString();
-
+       
         if (_lives <=0)
         {
             Destroy(this.gameObject);
