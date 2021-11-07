@@ -47,6 +47,10 @@ public class Player : MonoBehaviour
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         
         if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
