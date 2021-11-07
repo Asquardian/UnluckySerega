@@ -9,6 +9,8 @@ TagManager:
   - Trigger
   - Safe
   - Crossbow
+  - FireBall
+  - knife
   layers:
   - Default
   - TransparentFX
