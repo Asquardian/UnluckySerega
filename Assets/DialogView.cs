@@ -47,13 +47,15 @@ public class DialogView : MonoBehaviour
     public Text DialogOption, NameOption;
     public int lenght;
     public string FilePath;
-    private bool onTrigger = false;
+    private bool onTrigger;
+    Dialog[] json;
     // Start is called before the first frame update
     void Start()
     {
+        onTrigger = false;
         state = 0;
         path = Application.streamingAssetsPath + "/" + FilePath;//Path to StramingAssets in folder
-        Dialog[] json = JsonHelper.FromJson<Dialog>(File.ReadAllText(path));
+        json = JsonHelper.FromJson<Dialog>(File.ReadAllText(path));
         int value = Random.Range(0, lenght);
         NameOption.text = json[0].Name;
         DialogOption.text = json[0].DialogText;
@@ -68,7 +70,7 @@ public class DialogView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.getKeyDown("e") || state < lenght || OnTrigger)
+        if (Input.GetKeyDown("e") && state < lenght && onTrigger)
         {
             state++;
             NameOption.text = json[state].Name;
