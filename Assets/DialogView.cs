@@ -43,20 +43,36 @@ public class Dialog
 public class DialogView : MonoBehaviour
 {
     private string path;
+    private int state;
     public Text DialogOption, NameOption;
+    public int lenght;
     public string FilePath;
+    private bool onTrigger = false;
     // Start is called before the first frame update
     void Start()
     {
+        state = 0;
         path = Application.streamingAssetsPath + "/" + FilePath;//Path to StramingAssets in folder
         Dialog[] json = JsonHelper.FromJson<Dialog>(File.ReadAllText(path));
-        int value = Random.Range(0, 7);
-        NameOption.text = json[value].Name;
-        DialogOption.text = json[value].DialogText;
+        int value = Random.Range(0, lenght);
+        NameOption.text = json[0].Name;
+        DialogOption.text = json[0].DialogText;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            onTrigger = true;
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.getKeyDown("e") || state < lenght || OnTrigger)
+        {
+            state++;
+            NameOption.text = json[state].Name;
+            DialogOption.text = json[state].DialogText;
+        }
     }
 }
