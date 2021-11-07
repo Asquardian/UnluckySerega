@@ -13,7 +13,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -36,6 +36,13 @@ public class Boss : MonoBehaviour
 
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.transform.tag == "knife")
+        {
+            damage();
+        }
+    }
 
     public void damage()
     {
@@ -46,4 +53,7 @@ public class Boss : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+
+    
 }
