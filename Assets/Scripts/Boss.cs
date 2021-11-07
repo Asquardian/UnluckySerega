@@ -11,7 +11,7 @@ public class Boss : MonoBehaviour
     private GameObject _fireBallPrefab;
     private float _fireRate = 3.0f;
     private float _canFire = -1;
-    private int _lives = 1;
+    private int _lives = 10;
     public GameObject _cat;
     // Start is called before the first frame update
     void Start()
