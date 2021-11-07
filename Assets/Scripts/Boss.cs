@@ -9,9 +9,7 @@ public class Boss : MonoBehaviour
     private GameObject _fireBallPrefab;
     private float _fireRate = 3.0f;
     private float _canFire = -1;
-    private bool _isFirstPhase = true;
-    private bool _isSecondPhase = false;
-    private int _lives = 4;
+    private int _lives = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +19,7 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isFirstPhase == true)
-        {
+       
 
        
         if (Time.time > _canFire)
@@ -32,12 +29,9 @@ public class Boss : MonoBehaviour
             GameObject fireBall = Instantiate(_fireBallPrefab, new Vector3(transform.position.x, Random.Range(-4f, 5f), 0), Quaternion.identity);
           
 
+        
         }
-        }
-        else if(_isSecondPhase == true)
-        {
-
-        }
+        
 
 
     }
@@ -46,12 +40,8 @@ public class Boss : MonoBehaviour
     public void damage()
     {
         _lives--;
-        if(_lives < 3 && _lives != 0)
-        {
-            _isFirstPhase = false;
-            _isSecondPhase = true;
-        }
-        else if (_lives <=0)
+       
+        if (_lives <=0)
         {
             Destroy(this.gameObject);
         }
