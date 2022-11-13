@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lives.text = "Äðàêîí: " + _lives.ToString();
+        lives.text = "Ã„Ã°Ã ÃªÃ®Ã­: " + _lives.ToString();
     }
     // Update is called once per frame
     void Update()
@@ -40,7 +40,7 @@ public class Boss : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.tag == "knife")
+        if(collision.transform.tag == "knife") //hit by knife
         {
             damage();
         }
@@ -49,7 +49,7 @@ public class Boss : MonoBehaviour
     public void damage()
     {
         _lives--;
-        lives.text = "Äðàêîí: " + _lives.ToString();
+        lives.text = "Ã„Ã°Ã ÃªÃ®Ã­: " + _lives.ToString();
         if (_lives <=0)
         {
             _cat.SetActive(true);
